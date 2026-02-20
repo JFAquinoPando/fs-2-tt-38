@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { app } from "./app.js";
+import app from "./app.js";
 import { conectarDB } from './config/db.js';
 
 const { PUERTO } = process.env

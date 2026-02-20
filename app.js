@@ -1,7 +1,8 @@
 import rapido from "express";
 import permitirIntercambioDeRecursos from "cors";
 import { ReservaRuta } from "./rutas/ReservaRoutes.js";
-export const app = rapido()
+
+const app = rapido()
 
 app.use(permitirIntercambioDeRecursos())
 app.use(rapido.urlencoded({extended: true}))
@@ -12,4 +13,6 @@ app.get("/", (peticion, respuesta) => {
 })
 
 app.use("/reservas", ReservaRuta)
+
+export default app
 
