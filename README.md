@@ -29,7 +29,7 @@ API REST para gestionar reservas de espacios y lugares. Permite crear, consultar
 1. Clona el repositorio:
 ```bash
 git clone <url-del-repositorio>
-cd fs-2-tt-36
+cd fs-2-tt-38
 ```
 
 2. Instala las dependencias:
@@ -96,7 +96,7 @@ DELETE /reservas/:id
 ## 📝 Estructura del Proyecto
 
 ```
-fs-2-tt-36/
+fs-2-tt-38/
 ├── app.js                    # Configuración de Express
 ├── index.js                  # Punto de entrada
 ├── package.json              # Dependencias del proyecto
