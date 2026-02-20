@@ -18,7 +18,7 @@ export const conectarDB = async () => {
         return estadoConexionGlobal.conexion;
     }
 
-    const MONGO_URI = "mongodb+srv://jfaquinopando_db_user:yqjFu7zxPInR59jH@clausterfullstack.t6i9gun.mongodb.net/test?retryWrites=true&w=majority";
+    const MONGO_URI = process.env.MONGO_URI;
 
     if (!MONGO_URI) {
         throw new Error("La variable de entorno MONGO_URI no esta definida.");
