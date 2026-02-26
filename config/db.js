@@ -29,9 +29,9 @@ export const conectarDB = async () => {
     estadoConexionGlobal.promesa = mongoose
         .connect(MONGO_URI, {
             dbName: "test",
-            serverSelectionTimeoutMS: 15000,
+            serverSelectionTimeoutMS: 25000,
             socketTimeoutMS: 45000,
-            connectTimeoutMS: 10000,
+            connectTimeoutMS: 15000,
         })
         .catch((error) => {
             estadoConexionGlobal.promesa = null;
