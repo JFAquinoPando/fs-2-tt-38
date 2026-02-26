@@ -2,12 +2,14 @@ import rapido from "express";
 import permitirIntercambioDeRecursos from "cors";
 import { ReservaRuta } from "./rutas/ReservaRoutes.js";
 import { MongoClient, ServerApiVersion } from "mongodb";
-
+import { conectarDB } from "./config/db.js";
 const app = rapido()
+
 
 app.use(permitirIntercambioDeRecursos())
 app.use(rapido.urlencoded({extended: true}))
 
+conectarDB()
 
 app.get("/", (peticion, respuesta) => {
     respuesta.send("Hola, de momento 😀")
@@ -47,4 +49,3 @@ app.get("/mongo", async (peticion, respuesta) => {
 })
 
 export default app
-

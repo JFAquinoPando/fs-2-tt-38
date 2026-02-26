@@ -1,11 +1,15 @@
 import "dotenv/config";
 import app from "./app.js";
-import { conectarDB } from "./config/db.js";
+//import { conectarDB } from "./config/db.js";
 
 const PUERTO = Number(process.env.PUERTO) || 3003;
 const enVercel = process.env.VERCEL === "1";
 
-if (!enVercel) {
+app.listen(PUERTO, () => {
+        console.log(`Servidor activo en http://localhost:${PUERTO}`);
+    });
+
+/* if (!enVercel) {
     await conectarDB();
 
     app.listen(PUERTO, () => {
@@ -24,3 +28,4 @@ export default async function handler(peticion, respuesta) {
         });
     }
 }
+ */
