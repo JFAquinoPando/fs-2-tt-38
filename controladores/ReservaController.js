@@ -28,7 +28,7 @@ let reservas = [
 export const mostrarTodo = async function (peticion, respuesta) {
     //respuesta.send(reservas)
     try {
-        const reservas = await Reserva.find()
+        const reservas = await Reserva.find({})
         respuesta.send(reservas)
     } catch (error) {
         console.error("Chester, tenemos un problema: ", error);
