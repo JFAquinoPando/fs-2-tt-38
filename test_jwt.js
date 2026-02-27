@@ -35,3 +35,8 @@ C:\xampp\htdocs\fs-2-tt-38>node test_jwt.js
 Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250ZW5pZG8iOiJob2xAIiwiaWF0IjoxNzcyMTQ1MDI5LCJleHAiOjE3NzIxNDUzMjl9.fwgt0jesZokAuYCHCbqr8BvYJCirfn3zWfWNk1kyfxY
 
 */
+
+
+/* 
+Token del login
+*/

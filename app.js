@@ -1,6 +1,7 @@
 import rapido from "express";
 import permitirIntercambioDeRecursos from "cors";
 import { ReservaRuta } from "./rutas/ReservaRoutes.js";
+import { UsuarioRuta } from "./rutas/UsuarioRutas.js";
 import { MongoClient, ServerApiVersion } from "mongodb";
 import { conectarDB } from "./config/db.js";
 const app = rapido()
@@ -16,6 +17,7 @@ app.get("/", (peticion, respuesta) => {
 })
 
 app.use("/reservas", ReservaRuta)
+app.use("/usuarios", UsuarioRuta)
 
 app.get("/mongo", async (peticion, respuesta) => {
     const uri = "mongodb+srv://jfaquinopando_db_user:yqjFu7zxPInR59jH@clausterfullstack.t6i9gun.mongodb.net/?appName=clausterFullStack";
