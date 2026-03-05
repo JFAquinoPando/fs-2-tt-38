@@ -57,26 +57,26 @@ export async function crearUsuario(peticion, respuesta) {
 }
 
 export const loginUsuario = async (peticion, respuesta) => {
-    const { correo, clave } = peticion.body
-    console.log({correo, clave});
-    
+    const { email, password } = peticion.body
+    console.log({ email, password });
+
     const { sign } = jwt
-    const usuarioEncontrado = await Usuario.findOne({correo})
+    const usuarioEncontrado = await Usuario.findOne({ correo: email })
     console.log("test");
     console.log(usuarioEncontrado);
-    
+
     if (!usuarioEncontrado) {
         return respuesta.status(400).json({
             mensaje: "Credenciales inválidaas"
         })
     }
-    if (usuarioEncontrado.clave == clave) {
+    if (usuarioEncontrado.clave == password) {
         const token = sign({
             id: usuarioEncontrado._id,
             correo: usuarioEncontrado.correo
-        },CLAVE_JWT, {
+        }, CLAVE_JWT, {
             expiresIn: "3600s"
-        } )
+        })
         return respuesta.status(200).json({
             "mensaje": "login exitoso",
             "token": token
@@ -87,36 +87,51 @@ export const loginUsuario = async (peticion, respuesta) => {
 
 
 
-
-
-
-
-/* Falta */
-
-export const detalleReserva = async (peticion, respuesta) => {
+export const detalleUsuario = async (peticion, respuesta) => {
     const { id } = peticion.params
     try {
-        const reserva = await Reserva.findOne({ _id: id })
-        respuesta.send(reserva)
+        const usuario = await Usuario.findOne({ _id: id })
+        respuesta.send(usuario)
     } catch (error) {
         console.error("Chester, tenemos un problema: ", error);
         respuesta.status(404).json({
-            mensaje: "La reserva no fue encontrada"
+            mensaje: "El usuario no fue encontrado"
+        })
+    }
+}
+
+export const quitarUsuario = async (peticion, respuesta) => {
+    const { id } = peticion.params
+    await Usuario.deleteOne({ _id: id })
+    respuesta.send({
+        mensaje: `Usuario #${id} eliminado`
+    })
+}
+
+export const actualizarUsuario = async (peticion, respuesta) => {
+    const { id } = peticion.params
+    try {
+
+        const { nombre,
+            email,
+            contrasenha
+        } = peticion.body
+
+        await Usuario.updateOne({ _id: id }, {
+            $set: {
+                nombre: nombre,
+                correo: email,
+                clave: contrasenha
+            }
         })
 
+    } catch (error) {
+            console.error("El servidor no soporta la petición para el usuario", error);
     }
-
 }
-export const quitarReserva = async (peticion, respuesta) => {
-    const { id } = peticion.params
 
-    await Reserva.deleteOne({ _id: id })
 
-    respuesta.send({
-        mensaje: `Reserva #${id} eliminada`
-    })
 
-}
 
 export const actualizarReserva = async (peticion, respuesta) => {
     const { id } = peticion.params

@@ -42,11 +42,12 @@ export const mostrarTodo = async function (peticion, respuesta) {
 }
 
 export async function reservar(peticion, respuesta) {
+    console.log("Petición recibida para crear una reserva", peticion.body);
     const {
         lugar,
-        solicitante,
-        fecha_ini,
-        fecha_fin,
+        nombre,
+        fechaFin,
+        fechaInicio,
         hora_ini,
         hora_fin
     } = peticion.body
@@ -54,9 +55,9 @@ export async function reservar(peticion, respuesta) {
     try {
         const nuevaReserva = new Reserva({
             lugar,
-            nombre: solicitante,
-            fechaInicio: fecha_ini,
-            fechaFin: fecha_fin,
+            nombre: nombre,
+            fechaInicio: fechaInicio,
+            fechaFin: fechaFin,
         })
 
         const resultado = await nuevaReserva.save()
